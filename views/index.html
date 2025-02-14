@@ -1,0 +1,28 @@
+<!-- views/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MariaDB Connect with Node.js</title>
+</head>
+<body>
+    <h1>Data from MariaDB</h1>
+    <ul id="data-list">
+        <!-- ข้อมูลจากฐานข้อมูลจะแสดงที่นี่ -->
+    </ul>
+    <script>
+        fetch('/data')
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('data-list');
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    list.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
